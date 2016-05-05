@@ -1,0 +1,10 @@
+{
+  "name": "commodityalerts",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Node.js commodity app",
+  "author": "Daniel Gasienica <chris@whatalongstranget.rip>",
+  "dependencies": {
+    "express": "3.2.4"
+  }
+}
