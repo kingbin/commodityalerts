@@ -1,0 +1,16 @@
+i# OS X artifacts
+.DS_Store
+
+# Webstorm artifacts
+.idea
+
+# Node artifacts
+node_modules
+tmp
+
+# Deployment artifacts
+docker-deploy
+
+# Application artifacts
+dist
+vendor

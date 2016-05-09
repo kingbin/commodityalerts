@@ -1,15 +1,12 @@
-FROM    centos:centos6
+#FROM   node:latest
+FROM node:argon
 EXPOSE 8080
 
 MAINTAINER Chris Blazek <chris@whatalongstranget.rip>
 
-# Enable Extra Packages for Enterprise Linux (EPEL) for CentOS
-RUN     yum install -y epel-release
-# Install Node.js and npm
-RUN     yum install -y nodejs npm
-
-RUN mkdir -p /src
-WORKDIR /src
+# Create app directory
+RUN mkdir -p /usr/src/commodityalerts
+WORKDIR /usr/src/commodityalerts
 
 
 ARG version=unknown
@@ -19,12 +16,13 @@ LABEL version="$version-$commitsha"
 LABEL git-commit="$commitsha"
 LABEL git-branch="$branch"
 
-ADD . /src/
+ADD . /usr/src/commodityalerts
 
+# Install app dependencies
 RUN npm install \
-  && rm -rf node_modules \
-  && npm install --production \
-  && npm version --git-tag-version=false $version-$commitsha \
+#  && rm -rf node_modules \
+#  && npm install --production \
   && apt-get install git
 
-CMD [ "node", "index.js" ]
+CMD [ "npm", "start" ]
+#CMD [ "node", "index.js" ]
