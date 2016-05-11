@@ -1,7 +1,7 @@
 {
   "project": {
     "version": "1.0.0-beta.1",
-    "name": "client"
+    "name": "commodity-alerts"
   },
   "apps": [
     {"main": "src/main.ts", "tsconfig": "src/tsconfig.json"}

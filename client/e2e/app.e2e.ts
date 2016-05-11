@@ -1,14 +1,14 @@
-import { ClientPage } from './app.po';
+import { CommodityAlertsPage } from './app.po';
 
-describe('client App', function() {
-  let page: ClientPage;
+describe('commodity-alerts App', function() {
+  let page: CommodityAlertsPage;
 
   beforeEach(() => {
-    page = new ClientPage();
+    page = new CommodityAlertsPage();
   })
 
   it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('client works!');
+    expect(page.getParagraphText()).toEqual('commodity-alerts works!');
   });
 });

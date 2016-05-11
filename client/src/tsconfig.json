@@ -18,6 +18,7 @@
 
   "files": [
     "main.ts",
+    "app/app.component.ts",
     "typings.d.ts"
   ]
 }

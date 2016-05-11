@@ -1,0 +1,89 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Project name</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+  <form>
+    <div class="page-header">
+      <div class="input-group">
+        <span class="input-group-addon" id="inputQuote">
+          quote(s)
+        </span>
+        <input class="form-control" type="text" required
+          [(ngModel)]="quotesModel"
+          ngControl="quote"
+           #quote="ngForm"
+          on-enter="getQuote()" 
+          placeholder="GOOG,YHOO,CH16.CBT,CH17.CBT" 
+          aria-describedby="inputQuote">
+      </div>
+      <div [hidden]="quote.valid || quote.pristine" class="alert alert-danger">
+        Quote is required
+      </div>
+      <span> Press Enter to get quotes. <a (click)="loadDefaultQuotes()" >Load Test Data</a> OR <a (click)="clearQuotes()" >Clear Quotes</a></span>
+    </div>
+    <div class="row">
+      
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Commodity Quotes</h3>
+        </div>
+        <div class="panel-body">
+          <div class="col-md-12">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Symbol</th>
+                  <th>LastTradePrice</th>
+                  <th>Change</th>
+                  <th>Days Low</th>
+                  <th>Days High</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let stock of stockQuotes">
+                  <td>{{stock.name}}</td>
+                  <td>{{stock.symbol}}</td>
+                  <td>{{stock.lastTradePrice}}</td>
+                  <td>{{stock.change}}</td>
+                  <td>{{stock.daysLow}}</td>
+                  <td>{{stock.daysHigh}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="alert" role="alert" 
+        ng-class="{ 'alert-success': !status || status === 200, 'alert-warning': status !== 200 }">
+        {{ response | json }}   
+      </div>
+    </div>
+  </form>
+
+</div><!-- /.container -->
+
+<div class="container theme-showcase" role="log">
+  {{diagnostic}}
+</div>
