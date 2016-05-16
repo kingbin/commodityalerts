@@ -37,7 +37,7 @@
       <div [hidden]="quote.valid || quote.pristine" class="alert alert-danger">
         Quote is required
       </div>
-      <span> Press Enter to get quotes. <a (click)="loadDefaultQuotes()" >Load Test Data</a> OR <a (click)="clearQuotes()" >Clear Quotes</a></span>
+      <span> Press Enter to get quotes. <a (click)="loadDefaultQuotes()" >Load Test Data</a> OR <a (click)="clearQuotes()" >Clear Quotes</a> OR <a (click)="checkES6()" >Check ES6 Status</a></span>
     </div>
     <div class="row">
       
@@ -60,12 +60,12 @@
               </thead>
               <tbody>
                 <tr *ngFor="let stock of stockQuotes">
-                  <td>{{stock.name}}</td>
+                  <td>{{stock.Name}}</td>
                   <td>{{stock.symbol}}</td>
-                  <td>{{stock.lastTradePrice}}</td>
-                  <td>{{stock.change}}</td>
-                  <td>{{stock.daysLow}}</td>
-                  <td>{{stock.daysHigh}}</td>
+                  <td>{{stock.LastTradePriceOnly}}</td>
+                  <td>{{stock.Change}}</td>
+                  <td>{{stock.DaysLow}}</td>
+                  <td>{{stock.DaysHigh}}</td>
                 </tr>
               </tbody>
             </table>

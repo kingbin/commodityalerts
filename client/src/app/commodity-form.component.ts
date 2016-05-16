@@ -1,33 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, Inject, provide } from '@angular/core';
 import { NgForm }    from '@angular/common';
-import { Commodity }    from './commodity';
+
+import { CommodityService }    from './commodity.service';
+
 @Component({
   moduleId: module.id,
   selector: 'commodity-alerts-form',
   templateUrl: 'commodity-form.component.html',
-  styleUrls: ['commodity-form.component.css']
+  styleUrls: ['commodity-form.component.css'],
+//  providers: [CommodityService],
 })
+
 export class CommodityFormComponent {
   // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.quotesModel); }
+  get diagnostic() { return JSON.stringify(this.status); }
+  
+  constructor(private commodityService: CommodityService) { }
+
+  status: string;
+  errorMessage: string;
+  stockQuotes: Array<any>;
   
   quotesModel = "";
-  stockQuotes = [new Commodity(1, 'Alphabet Inc.', 'GOOG', 719.50, '+6.60', 715.72, 721.35)];
 
   submitted = false;
   onSubmit() { this.submitted = true; }
   
   loadDefaultQuotes() {
     this.quotesModel = "GOOG,YHOO,CH16.CBT,CH17.CBT";
-    this.stockQuotes = [new Commodity(1, 'Alphabet Inc.', 'GOOG', 719.50, '+6.60', 715.72, 721.35),
-                        new Commodity(2,'Yahoo! Inc.','YHOO',27.44,'+0.26',0,37.48),
-                        new Commodity(3,'Corn Mar 16','CH16.CBT',364.50,'-2.25',364.25,367.75),
-                        new Commodity(4,'Corn Futures,Mar-2017,Composite','CH17.CBT',386.75,'+0.25',385.25,389.00)];
+    this.commodityService.getCommodities(this.quotesModel)
+      .subscribe(
+        quotes => this.stockQuotes = quotes,
+        error =>  this.errorMessage = <any>error);
   }
   
   clearQuotes() {
     this.quotesModel = "";
     this.stockQuotes = [];
-  }  
+  }
+  
+  checkES6() {
+    "use strict";
+    
+    try { eval("var foo = (x)=>x+1"); }
+    catch (e) { this.status = 'false'; return false; }
+    this.status = 'true';
+    return true;
+  }
   
 }
