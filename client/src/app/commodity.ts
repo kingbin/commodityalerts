@@ -1,9 +1,9 @@
 export interface Commodity {
     id: number;
-    Name: string;
+    name: string;
     symbol: string;
-    LastTradePriceOnly?: number;
-    Change?: string;
-    DaysLow?: number;
-    DaysHigh?: number;
+    lastTradePriceOnly?: number;
+    change?: string;
+    daysLow?: number;
+    daysHigh?: number;
 }
